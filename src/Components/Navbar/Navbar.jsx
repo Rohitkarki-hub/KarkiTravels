@@ -4,58 +4,50 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import img from "./imgs/logo.jpg";
 
 const Navbar = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const navigate = useNavigate();
-  console.log(navbarOpen);
-  return (
-    <nav className="fixed w-screen top-0  z-50 bg-blue-300 h-20  ">
-      <div className="container mx-auto flex flex-wrap items-center justify-between px-6 ">
-        <div className="w-full  sticky top-0 flex justify-between  lg:w-auto lg:static lg:justify-start h-[7vh]  items-center">
-          <a
-            className="font-medium tracking-wider transition-colors cursor-pointer "
-            onClick={() => navigate("/")}
-          >
-            <img src={img} alt="" className="w-11" />
-          </a>
-          <div className="flex items-center">
-            <button
-              className="cursor-pointer text-xl leading-none px-3 py-1 h-p[3rem] block lg:hidden outline-none focus:outline-none"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              {navbarOpen ? (
-                <AiOutlineClose size={25} />
-              ) : (
-                <AiOutlineMenu size={25} />
-              )}
-            </button>
-          </div>
-        </div>
+  const [menuOpened, setMenuOpened] = useState(false);
 
-        <div
-          className={
-            "lg:flex flex-row items-center lg:h-auto h-screen bg-blue-300 cursor-pointer justify-center " +
-            (navbarOpen ? " flex " : "  hidden ")
-          }
+  const handleChange = () => {
+    setMenuOpened(!menuOpened);
+  };
+
+  const navigate = useNavigate();
+
+  return (
+    <nav className="z-30 ">
+      {/*Desktop verson */}
+      <div className=" container mx-32 justify-between hidden md:flex ">
+        <a className="my-2 flex items-end gap-3">
+          <img src={img} alt="" height={71} width={71} />
+        </a>
+        <ul className="flex gap-8 lg:gap-12 items-center capitalize font-[500] text-black">
+          <li className="hover:scale-105 transition-all">Home</li>
+          <li className="hover:scale-105 transition-all">Package</li>
+          <li className="hover:scale-105 transition-all">Destination</li>
+          <li className="hover:scale-105 transition-all">Contact Us</li>
+        </ul>
+      </div>
+      {/* Mobile verson */}
+      <div className="container mx-auto md:hidden flex justify-between items-center ">
+        <a onClick={() => navigate("/")} className="my-2 flex items-end gap-3">
+          <img src={img} alt="" height={36} width={36} />
+        </a>
+        {!menuOpened ? (
+          <AiOutlineMenu size={28} onClick={handleChange} />
+        ) : (
+          <AiOutlineClose size={28} onClick={handleChange} />
+        )}
+        <ul
+          className={`flex gap-4 flex-col shadow-xl p-6 ring-1 ring-slate-900/5 absolute top-12 left-0 right-0 text-center capitalize font-[500] text-slate-500 bg-white transition-transform duration-700 z-20 ${
+            menuOpened
+              ? "transform translate-y-0"
+              : "transform -translate-x-full"
+          }`}
         >
-          <ul className="flex flex-col lg:flex-row items-center gap-x-4 list-none lg:ml-auto lg:transition-y-[50%] lg:gap-y-0 gap-y-8">
-            <li className="py2 flex text-yellow-700 uppercase font-medium items-center leading-snug hover:text-[#1460AD]">
-              Trips
-            </li>
-            <li className="py2 flex text-yellow-700 uppercase font-medium items-center leading-snug hover:text-[#1460AD]">
-              Recomended Islands
-            </li>
-            <li className="py2 flex text-yellow-700 uppercase font-medium items-center leading-snug hover:text-[#1460AD]">
-              Transport
-            </li>
-            <li className="py2 flex text-yellow-700 uppercase font-medium items-center leading-snug hover:text-[#1460AD]">
-              Boat Charter
-            </li>
-            <li className="py2 flex text-yellow-700 uppercase font-medium items-center leading-snug hover:text-[#1460AD]">
-              Boat Time Tab
-            </li>
-            <li className="py2 flex text-yellow-700 uppercase font-medium items-center leading-snug hover:text-[#1460AD]"></li>
-          </ul>
-        </div>
+          <li className="hover:scale-105 transition-all">Home</li>
+          <li className="hover:scale-105 transition-all">Package</li>
+          <li className="hover:scale-105 transition-all">Destination</li>
+          <li className="hover:scale-105 transition-all">Contact Us</li>
+        </ul>
       </div>
     </nav>
   );
