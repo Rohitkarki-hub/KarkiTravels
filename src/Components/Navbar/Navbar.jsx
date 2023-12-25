@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import img from "./imgs/logo.jpg";
+import SignIn from "../googleSignin/signin";
 
 const Navbar = () => {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -24,6 +25,11 @@ const Navbar = () => {
           <li className="hover:scale-105 transition-all">Package</li>
           <li className="hover:scale-105 transition-all">Destination</li>
           <li className="hover:scale-105 transition-all">Contact Us</li>
+          <li className="hover:scale-105 transition-all">
+            <button className="  bg-green-400 border rounded-lg p-2 w-full">
+              <SignIn />
+            </button>
+          </li>
         </ul>
       </div>
       {/* Mobile verson */}
@@ -47,6 +53,12 @@ const Navbar = () => {
           <li className="hover:scale-105 transition-all">Package</li>
           <li className="hover:scale-105 transition-all">Destination</li>
           <li className="hover:scale-105 transition-all">Contact Us</li>
+          <li className="hover:scale-105 transition-all ">
+            {" "}
+            <button className="  bg-green-400 border rounded-lg p-2 w-fit">
+              <SignIn />
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
